@@ -42,6 +42,7 @@ SDL_Texture* turnoJogador2Image = NULL;
 SDL_Texture* turnoPcImage = NULL;
 SDL_Texture* vitoriaJogador1Image = NULL;
 SDL_Texture* vitoriaJogador2Image = NULL;
+SDL_Texture* vitoriaPC = NULL;
 SDL_Texture* empateImage = NULL;
 SDL_Texture* jogarNovamenteImage = NULL;
 
@@ -123,6 +124,7 @@ bool inicializar() {
     botaoJxpImage = carregarTextura("fichas/botao2.png");
     vitoriaJogador1Image = carregarTextura("fichas/jogador1.png");
     vitoriaJogador2Image = carregarTextura("fichas/jogador2.png");
+    vitoriaPC = carregarTextura("fichas/vitoriaPC.png");
     empateImage = carregarTextura("fichas/empate.png");
     jogarNovamenteImage = carregarTextura("fichas/novamente.png");
 
@@ -139,6 +141,7 @@ void fechar() {
     SDL_DestroyTexture(botaoJxpImage);
     SDL_DestroyTexture(vitoriaJogador1Image);
     SDL_DestroyTexture(vitoriaJogador2Image);
+    SDL_DestroyTexture(vitoriaPC);
     SDL_DestroyTexture(empateImage);
     SDL_DestroyTexture(jogarNovamenteImage);
 
@@ -258,7 +261,11 @@ void desenharFimDeJogo() {
     if (vencedor == 1) {
         desenharTexturaCentro(vitoriaJogador1Image, ALTURA_TELA / 2 - 50, 400);
     } else if (vencedor == 2) {
-        desenharTexturaCentro(vitoriaJogador2Image, ALTURA_TELA / 2 - 50, 400);
+        if (modoJogo == JOGADOR_VS_JOGADOR) {
+            desenharTexturaCentro(vitoriaJogador2Image, ALTURA_TELA / 2 - 50, 400);
+        } else {
+            desenharTexturaCentro(vitoriaPC, ALTURA_TELA / 2 - 50, 400);
+        }
     } else if (empate) {
         desenharTexturaCentro(empateImage, ALTURA_TELA / 2 - 50, 400);
     }
