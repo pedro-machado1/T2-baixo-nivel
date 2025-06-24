@@ -75,7 +75,7 @@ int main(int argc, char* args[]) {
             manipularEventos(e);
         }
         if (estadoJogo == JOGANDO && modoJogo == JOGADOR_VS_PC && jogadorAtual == 2 && vencedor == 0) {
-            SDL_Delay(500);
+            SDL_Delay(500); 
             int col = escolherColunaPC();
             if (movimentoValido(col)) {
                 int linha = obterProximaLinhaLivre(col);
@@ -194,10 +194,12 @@ void manipularEventos(SDL_Event e) {
                 } else {
                     jogadorAtual = (jogadorAtual == 1) ? 2 : 1;
                 }
+                renderizar();
             }
         } else if (estadoJogo == FIM_DE_JOGO) {
             estadoJogo = MENU;
         }
+        
     }
 }
 
